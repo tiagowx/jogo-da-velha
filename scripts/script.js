@@ -6,6 +6,9 @@ var squares = document.getElementsByClassName('square');
 changePlayer('X')
 
 function selectSquare(id) {
+    if (winner)
+        return;
+
     var square = document.getElementById(id);
     if (square.innerHTML !== '-')
         return;
@@ -103,5 +106,17 @@ function checkSequence(square1, square2, square3) {
     }
 
     return equal;
+}
 
+function restart() {
+
+    winner = null;
+    selectedWinner = null;
+    for (let i = 0; i < 9; i++) {
+        squares[i].style.background = '#eee';
+        squares[i].style.color = '#eee';
+        squares[i].innerHTML = '-';
+    }
+
+    changePlayer('X');
 }
